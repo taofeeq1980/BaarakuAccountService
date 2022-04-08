@@ -1,6 +1,8 @@
 ﻿using ApplicationServices.Accounts.Command;
+using ApplicationServices.Accounts.Response;
 using ApplicationServices.Shared.BaseResponse;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
@@ -27,7 +29,7 @@ namespace AccountServiceApi.Controllers
         /// <param name="addAccountCommand"></param>
         /// <returns></returns>
         [HttpPost("create-account")]
-        [ProducesResponseType(typeof(Result), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Result<AccountViewModel>), (int)HttpStatusCode.OK)]
         [SwaggerOperation(Summary = "Create New Customer Account")] 
         public async Task<IActionResult> CreateAccountAsync([FromBody] AddAccountCommand addAccountCommand) 
         {

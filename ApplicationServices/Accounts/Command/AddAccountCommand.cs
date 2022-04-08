@@ -1,4 +1,5 @@
-﻿using ApplicationServices.Shared.BaseResponse;
+﻿using ApplicationServices.Accounts.Response;
+using ApplicationServices.Shared.BaseResponse;
 using AutoMapper;
 using Domain;
 using Domain.Entities;
@@ -7,7 +8,7 @@ using System;
 
 namespace ApplicationServices.Accounts.Command
 {
-    public class AddAccountCommand : IRequest<Result>
+    public class AddAccountCommand : IRequest<Result<AccountViewModel>>
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }

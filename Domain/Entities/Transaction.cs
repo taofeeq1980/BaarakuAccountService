@@ -9,7 +9,7 @@ namespace Domain.Entities
         public string Narration { get; set; }
         public TransactionStatus Status { get; set; }
         public decimal Amount { get; set; }
-        public Guid AccountId { get; set; } 
+        public int AccountId { get; set; } 
         public Account Account { get; set; } 
 
         public string BeneficiaryAccountNo { get; set; } 

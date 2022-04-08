@@ -31,7 +31,8 @@ namespace ApplicationServices.Transactions.CommandHandler
                 Narration = request.Narration,
                 Amount = request.Amount,
                 TransactionReference = Util.RandomDigits(12),
-                TransactionType = request.TransactionType
+                TransactionType = request.TransactionType,
+                Status = Domain.TransactionStatus.Successful
             };
             await _context.Transactions.AddAsync(transaction, cancellationToken);
             if (await _context.SaveChangesAsync(cancellationToken) > 0)

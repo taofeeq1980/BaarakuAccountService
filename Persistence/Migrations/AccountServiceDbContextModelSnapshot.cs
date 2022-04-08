@@ -15,13 +15,13 @@ namespace Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.8");
+                .HasAnnotation("ProductVersion", "5.0.10");
 
             modelBuilder.Entity("Domain.Entities.Account", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("int");
 
                     b.Property<string>("AccountNo")
                         .IsRequired()
@@ -33,9 +33,8 @@ namespace Persistence.Migrations
                     b.Property<decimal>("AvailableBalance")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("CustomerId")
-                        .IsRequired()
-                        .HasColumnType("char(36)");
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -58,9 +57,9 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Customer", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DateAdded")
                         .HasColumnType("datetime(6)");
@@ -100,18 +99,23 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Transaction", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("int");
 
-                    b.Property<string>("AccountId")
-                        .IsRequired()
-                        .HasColumnType("char(36)");
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Category")
+                    b.Property<string>("BankCode")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("BeneficiaryAccountName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("BeneficiaryAccountNo")
                         .HasColumnType("longtext");
 
                     b.Property<DateTime?>("DateAdded")
@@ -126,6 +130,12 @@ namespace Persistence.Migrations
                     b.Property<string>("Narration")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
+
+                    b.Property<string>("PaymentGatewayResponse")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PaymentGatewayTransferCode")
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -149,12 +159,12 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Account", b =>
                 {
-                    b.HasOne("Domain.Entities.Customer", "Customer")
+                    b.HasOne("Domain.Entities.Customer", null)
                         .WithMany()
                         .HasForeignKey("CustomerId")
+                        .HasConstraintName("FK_Customer")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Domain.Entities.Transaction", b =>

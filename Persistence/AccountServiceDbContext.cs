@@ -81,22 +81,22 @@ namespace Persistence
             modelBuilder.Entity<Customer>().HasIndex(u => u.Email).IsUnique();
 
             // Configure columns  
-            modelBuilder.Entity<Customer>().Property(ug => ug.Id).HasColumnType("char").IsRequired();
+            modelBuilder.Entity<Customer>().Property(ug => ug.Id).HasColumnType("int").IsRequired();
             modelBuilder.Entity<Customer>().Property(ug => ug.Email).HasColumnType("varchar(50)").IsRequired();
             modelBuilder.Entity<Customer>().Property(ug => ug.Firstname).HasColumnType("varchar(50)").IsRequired();
             modelBuilder.Entity<Customer>().Property(ug => ug.Image).HasColumnType("varchar(100)").IsRequired(false);
             modelBuilder.Entity<Customer>().Property(ug => ug.Lastname).HasColumnType("varchar(50)").IsRequired();
             modelBuilder.Entity<Customer>().Property(ug => ug.PhoneNo).HasColumnType("varchar(50)").IsRequired();
 
-            modelBuilder.Entity<Account>().Property(u => u.Id).HasColumnType("char").IsRequired();
+            modelBuilder.Entity<Account>().Property(u => u.Id).HasColumnType("int").IsRequired();
             modelBuilder.Entity<Account>().Property(u => u.AccountNo).HasColumnType("varchar(50)").IsRequired();
             modelBuilder.Entity<Account>().Property(u => u.AvailableBalance).HasColumnType("decimal(18,2)").IsRequired();
             modelBuilder.Entity<Account>().Property(u => u.LedgerBalance).HasColumnType("decimal(18,2)").IsRequired();
-            modelBuilder.Entity<Account>().Property(u => u.CustomerId).HasColumnType("char").IsRequired();
+            modelBuilder.Entity<Account>().Property(u => u.CustomerId).HasColumnType("int").IsRequired();
             modelBuilder.Entity<Account>().Property(u => u.AccountType).HasColumnType("int").IsRequired();
 
-            modelBuilder.Entity<Transaction>().Property(ug => ug.Id).HasColumnType("char").IsRequired();
-            modelBuilder.Entity<Transaction>().Property(ug => ug.AccountId).HasColumnType("char").IsRequired();
+            modelBuilder.Entity<Transaction>().Property(ug => ug.Id).HasColumnType("int").IsRequired();
+            modelBuilder.Entity<Transaction>().Property(ug => ug.AccountId).HasColumnType("int").IsRequired();
             modelBuilder.Entity<Transaction>().Property(ug => ug.Amount).HasColumnType("decimal(18,2)").IsRequired();
             modelBuilder.Entity<Transaction>().Property(ug => ug.Narration).HasColumnType("varchar(100)").IsRequired();
             modelBuilder.Entity<Transaction>().Property(ug => ug.TransactionReference).HasColumnType("varchar(50)").IsRequired();

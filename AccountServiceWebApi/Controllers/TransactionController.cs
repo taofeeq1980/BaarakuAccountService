@@ -1,6 +1,7 @@
 ﻿using ApplicationServices.Shared.BaseResponse;
 using ApplicationServices.Transactions.Command;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
@@ -42,7 +43,7 @@ namespace AccountServiceApi.Controllers
         /// <returns></returns>
         [HttpPost("fund-transfer")]
         [ProducesResponseType(typeof(Result), (int)HttpStatusCode.OK)]
-        [SwaggerOperation(Summary = "Transfer from Customer Account")] 
+        [SwaggerOperation(Summary = "Transfer from Customer Account")]
         public async Task<IActionResult> FundTransferAsync([FromBody] FundTransferCommand fundTransferCommand)
         {
             var response = await _mediator.Send(fundTransferCommand);

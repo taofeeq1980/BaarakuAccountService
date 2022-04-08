@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AccountServiceApi.Controllers
@@ -8,6 +9,7 @@ namespace AccountServiceApi.Controllers
     /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize]
     public class BaseController : ControllerBase
     {
         /// <summary>
